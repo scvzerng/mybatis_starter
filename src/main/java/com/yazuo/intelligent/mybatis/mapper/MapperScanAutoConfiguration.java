@@ -1,5 +1,6 @@
-package com.yazuo.intelligent;
+package com.yazuo.intelligent.mybatis.mapper;
 
+import com.yazuo.intelligent.MapperLocationClass;
 import com.yazuo.intelligent.datasource.config.DataSourceAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -11,6 +12,6 @@ import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 @Configuration
 @ConditionalOnClass(MapperScannerConfigurer.class)
 @ConditionalOnBean(DataSourceAutoConfiguration.class    )
-@MapperScan(basePackageClasses = MapperScanAutoConfiguration.class,markerInterface = Mapper.class)
+@MapperScan(basePackageClasses = MapperLocationClass.class,markerInterface = Mapper.class)
 public class MapperScanAutoConfiguration {
 }

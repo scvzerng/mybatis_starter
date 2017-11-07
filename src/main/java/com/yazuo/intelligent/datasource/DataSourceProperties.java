@@ -24,6 +24,10 @@ public class DataSourceProperties  {
      * 默认数据源
      */
     private String master = DEFAULT;
+    /**
+     * 启用数据源
+     */
+    public boolean enable = false;
 
     public Map<String, DataSourceConfig> getDataSources() {
         return dataSources;

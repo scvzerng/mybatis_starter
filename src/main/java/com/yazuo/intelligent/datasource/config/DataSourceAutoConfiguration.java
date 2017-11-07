@@ -1,10 +1,9 @@
 package com.yazuo.intelligent.datasource.config;
-
+import com.yazuo.intelligent.datasource.dynmic.MultipleDataSource;
 import com.alibaba.fastjson.JSON;
 import com.yazuo.intelligent.datasource.DataSourceProperties;
 import com.yazuo.intelligent.datasource.builder.DataSourceBuilder;
 import com.yazuo.intelligent.datasource.builder.DruidDataSourceBuilder;
-import com.yazuo.intelligent.dynmic.MultipleDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

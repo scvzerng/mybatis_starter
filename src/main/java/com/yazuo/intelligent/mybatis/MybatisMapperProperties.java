@@ -1,7 +1,7 @@
 package com.yazuo.intelligent.mybatis;
 
-import com.yazuo.intelligent.mybatis.mapper.provider.ConditionRemoveMapper;
-import com.yazuo.intelligent.mybatis.mapper.provider.ConditionSelectMapper;
+import org.yazuo.mapper.ConditionRemoveMapper;
+import org.yazuo.mapper.ConditionSelectMapper;
 import org.apache.ibatis.session.ExecutorType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.Resource;
@@ -9,7 +9,6 @@ import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Config;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

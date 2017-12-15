@@ -1,6 +1,7 @@
-package com.yazuo.intelligent.mybatis.mapper.provider;
+package org.yazuo.mapper;
 
 import com.yazuo.intelligent.mybatis.mapper.condition.EntityCondition;
+import com.yazuo.intelligent.mybatis.mapper.provider.ConditionRemoveProvider;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;

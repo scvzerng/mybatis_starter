@@ -1,6 +1,7 @@
-package com.yazuo.intelligent.mybatis.mapper.provider;
+package org.yazuo.mapper;
 
 import com.yazuo.intelligent.mybatis.mapper.condition.EntityCondition;
+import com.yazuo.intelligent.mybatis.mapper.provider.ConditionSelectProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import tk.mybatis.mapper.common.Mapper;

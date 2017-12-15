@@ -1,4 +1,4 @@
-package com.yazuo.intelligent.datasource.dynmic;
+package com.yazuo.intelligent.datasource.dynamic;
 
 import lombok.Getter;
 import lombok.Setter;

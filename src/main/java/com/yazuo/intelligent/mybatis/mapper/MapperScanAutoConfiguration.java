@@ -1,6 +1,6 @@
 package com.yazuo.intelligent.mybatis.mapper;
 
-import com.yazuo.intelligent.MapperLocationClass;
+import com.MapperLocationClass;
 import com.yazuo.intelligent.datasource.config.DataSourceAutoConfiguration;
 import com.yazuo.intelligent.mybatis.config.MybatisAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;

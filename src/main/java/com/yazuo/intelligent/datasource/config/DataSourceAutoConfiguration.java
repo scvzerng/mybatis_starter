@@ -1,15 +1,16 @@
 package com.yazuo.intelligent.datasource.config;
-import com.yazuo.intelligent.datasource.dynmic.MultipleDataSource;
+import com.yazuo.intelligent.datasource.aop.DynamicDataSourceAspect;
 import com.alibaba.fastjson.JSON;
 import com.yazuo.intelligent.datasource.DataSourceProperties;
 import com.yazuo.intelligent.datasource.builder.DataSourceBuilder;
 import com.yazuo.intelligent.datasource.builder.DruidDataSourceBuilder;
+import com.yazuo.intelligent.datasource.dynamic.MultipleDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty(prefix = DataSourceProperties.PREFIX,name = "enable",havingValue = "true")
+@ConditionalOnExpression("${intelligent.datasource.enable:true}")
 @EnableTransactionManagement
 @EnableConfigurationProperties(DataSourceProperties.class)
 @ConditionalOnClass(value = {SqlSessionFactory.class, SqlSessionFactoryBean.class})
@@ -51,7 +52,7 @@ public class DataSourceAutoConfiguration {
     }
     @Bean
     @ConditionalOnMissingBean
-    public MultipleDataSource multipleDataSource( DataSourceBuilder dataSourceBuilder) {
+    public MultipleDataSource multipleDataSource(DataSourceBuilder dataSourceBuilder) {
         log.info("init multi datasource");
         MultipleDataSource multipleDataSource = new MultipleDataSource();
         log.info("set master datasource = {}",dataSources.getMaster());
@@ -96,5 +97,8 @@ public class DataSourceAutoConfiguration {
         return targets;
     }
 
-
+    @Bean
+    public DynamicDataSourceAspect dataSourceAspect(){
+        return new DynamicDataSourceAspect();
+    }
 }

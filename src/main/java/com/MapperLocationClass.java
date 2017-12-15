@@ -1,4 +1,4 @@
-package com.yazuo.intelligent;
+package com;
 
 public class MapperLocationClass {
 }

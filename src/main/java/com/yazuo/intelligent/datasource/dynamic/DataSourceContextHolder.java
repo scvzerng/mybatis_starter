@@ -1,4 +1,4 @@
-package com.yazuo.intelligent.datasource.dynmic;
+package com.yazuo.intelligent.datasource.dynamic;
 
 
 public class DataSourceContextHolder {

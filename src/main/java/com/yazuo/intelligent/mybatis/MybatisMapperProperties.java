@@ -1,11 +1,14 @@
 package com.yazuo.intelligent.mybatis;
 
+import com.yazuo.intelligent.mybatis.mapper.provider.ConditionRemoveMapper;
+import com.yazuo.intelligent.mybatis.mapper.provider.ConditionSelectMapper;
 import org.apache.ibatis.session.ExecutorType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.Resource;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Config;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,7 +50,7 @@ public class MybatisMapperProperties extends Config {
     /**
      *需要注册的Mapper
      */
-    private List<Class> mappers = Collections.singletonList(Mapper.class);
+    private List<Class> mappers = Arrays.asList(ConditionRemoveMapper.class,Mapper.class, ConditionSelectMapper.class);
 
     public String getConfig() {
         return config;

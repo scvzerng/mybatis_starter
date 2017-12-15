@@ -37,6 +37,7 @@ public class EntityCondition<T> {
 
     @SuppressWarnings("unchecked")
     public EntityCondition() {
+        //TODO 泛型获取有BUG
         entity = EntityHelper.getEntityTable(ResolvableType.forInstance(this).getGeneric(0).resolve());
     }
 

@@ -4,14 +4,10 @@ import com.yazuo.intelligent.mybatis.mapper.enums.Logic;
 import com.yazuo.intelligent.mybatis.mapper.enums.Operator;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.core.ResolvableType;
 import tk.mybatis.mapper.entity.EntityColumn;
-import tk.mybatis.mapper.entity.EntityTable;
 import tk.mybatis.mapper.mapperhelper.EntityHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -22,8 +18,14 @@ import static java.util.stream.Collectors.toList;
  * Created by scvzerng on 2017/5/8.
  */
 public class EntityCondition {
-    //查询实体
+
     private Map<String, EntityColumn> propertyMap;
+    /**
+     * 需要查询的列
+     */
+    @Getter
+    @Setter
+    private Collection<EntityColumn> columns;
     @Getter
     //查询条件 单个条件
     private List<Condition> conditions = new ArrayList<>(1);
@@ -40,6 +42,7 @@ public class EntityCondition {
 
     private EntityCondition(Class<?> clazz) {
         propertyMap = EntityHelper.getEntityTable(clazz).getPropertyMap();
+        columns = propertyMap.values();
     }
 
     public static EntityCondition forClass(Class<?> clazz) {
@@ -65,6 +68,21 @@ public class EntityCondition {
         this.orders = orderByConditions.stream()
                 .filter(orderByCondition -> propertyMap.containsKey(orderByCondition.getField()))
                 .peek(order -> order.setEntityColumn(propertyMap.get(order.getField())))
+                .collect(toList());
+    }
+
+    public void filter(String... field){
+       List<String> filterFields = Arrays.asList(field);
+      this.columns = propertyMap.values()
+              .stream()
+              .filter(entityColumn -> !filterFields.contains(entityColumn.getProperty()))
+              .collect(toList());
+    }
+    public void include(String... field){
+        List<String> filterFields = Arrays.asList(field);
+        this.columns = propertyMap.values()
+                .stream()
+                .filter(entityColumn -> filterFields.contains(entityColumn.getProperty()))
                 .collect(toList());
     }
 

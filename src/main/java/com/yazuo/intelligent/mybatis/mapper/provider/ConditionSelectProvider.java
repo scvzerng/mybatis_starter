@@ -25,11 +25,29 @@ public class ConditionSelectProvider extends AbstractConditionProvider {
         StringBuilder sql = new StringBuilder();
 
         //支持查询指定列
-        sql.append(SqlHelper.selectAllColumns(entityClass));
+        sql.append(getColumns());
         sql.append(SqlHelper.fromTable(entityClass, tableName(entityClass)));
         sql.append(sql());
         sql.append(getOrderByCondition());
         return sql.toString();
+    }
+
+    private String getColumns(){
+        return trim(
+                "SELECT ",
+                "",
+                "",
+                ",",
+                ()->
+                        foreach(
+                                "entityCondition.columns",
+                                "column",
+                                " ",
+                                " ",
+                                ",",
+                                ()->
+                                        "${column.column}")
+        );
     }
 
     private String getOrderByCondition() {

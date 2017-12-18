@@ -85,6 +85,10 @@ intelligent:
                 Condition.builder().field("storeStatus").logic(Logic.AND).operator(Operator.BETWEEN).value(Arrays.asList(1,2)).build(),
                 Condition.builder().field("storeStatus").logic(Logic.OR).operator(Operator.IN).value(Arrays.asList(1,2,3)).build())
         );
+        //过滤该字段
+        entityCondition.filter("storeStatus");
+        //只保留该字段 与filter互斥
+        entityCondition.include("storeStatus");
         entityCondition.addOrder(OrderBy.asc("aclStoreType"));
         entityCondition.addOrder(OrderBy.desc("storeStatus"));
         PageHelper.startPage(page,size).doSelectPage(()->aclStoreMapper.selectByEntityCondition(entityCondition));

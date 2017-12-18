@@ -24,6 +24,6 @@ public interface ConditionSelectMapper<T> extends Mapper<T>,InsertListMapper<T> 
      * @return
      */
     @SelectProvider(type = ConditionSelectProvider.class, method = "dynamicSQL")
-    List<T> selectByEntityCondition(@Param("entityCondition") EntityCondition<T> condition);
+    List<T> selectByEntityCondition(@Param("entityCondition") EntityCondition condition);
 
 }

@@ -45,7 +45,11 @@ public class ConditionSelectProvider extends AbstractConditionProvider {
                                  foreach(
                                 "entityCondition.orders",
                                 "order",
-                                () -> "${order.entityColumn.column} ${order.entityColumn.order} ")));
+                                "",
+                                "",
+                                ","
+                               ,
+                                () -> "${order.entityColumn.column} ${order.order} ")));
     }
 
 }

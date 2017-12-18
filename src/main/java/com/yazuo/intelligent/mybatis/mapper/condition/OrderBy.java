@@ -1,6 +1,7 @@
 package com.yazuo.intelligent.mybatis.mapper.condition;
 
 import com.yazuo.intelligent.mybatis.mapper.enums.Order;
+import lombok.Builder;
 import lombok.Data;
 import tk.mybatis.mapper.entity.EntityColumn;
 
@@ -30,4 +31,5 @@ public class OrderBy {
     public static OrderBy desc(String field){
        return new OrderBy(field);
     }
+
 }

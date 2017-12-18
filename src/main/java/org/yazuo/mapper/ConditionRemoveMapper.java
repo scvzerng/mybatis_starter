@@ -20,6 +20,6 @@ public interface ConditionRemoveMapper<T> extends Mapper<T>,InsertListMapper<T> 
      * @return
      */
     @DeleteProvider(type = ConditionRemoveProvider.class, method = "dynamicSQL")
-    int deleteByEntityCondition(@Param("entityCondition") EntityCondition<T> condition);
+    int deleteByEntityCondition(@Param("entityCondition") EntityCondition condition);
 
 }

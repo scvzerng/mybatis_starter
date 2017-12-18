@@ -2,7 +2,10 @@ package com.yazuo.intelligent.mybatis.mapper.condition;
 
 
 import com.yazuo.intelligent.mybatis.mapper.enums.Logic;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +15,14 @@ import java.util.List;
  * Created by scvzerng on 2017/5/8.
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ConditionGroup {
     //单个条件
     private List<Condition> conditions = new ArrayList<>(2);
     //链接条件 首个会被截断
     private Logic logic;
+
 
 }

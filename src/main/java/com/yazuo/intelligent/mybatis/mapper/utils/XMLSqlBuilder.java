@@ -73,7 +73,7 @@ public class XMLSqlBuilder {
      * @return
      */
     public static String bind(String name,String value){
-        return String.format("<bind name='%s' value='%s' />" ,name,value);
+        return String.format("<bind name='%s' range='%s' />" ,name,value);
     }
 
     public static String equalsString(String key,String value){

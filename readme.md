@@ -65,3 +65,91 @@ intelligent:
 ### @DataSource
 
 - 注解切换数据源 value写上配置时填的key即可
+
+### EntityCondition
+**代码**
+```java
+  EntityCondition entityCondition = EntityCondition.forClass(AclStore.class);
+        entityCondition.addCondition("storeStatus",2);
+        entityCondition.addCondition("storeStatus",1);
+        entityCondition.addCondition(Logic.OR,"storeStatus",Operator.IN,Arrays.asList(1,2,3,5));
+        entityCondition.addCondition(Logic.OR,"storeStatus",Operator.BETWEEN,Arrays.asList(1,2));
+        entityCondition.addCondition(Logic.OR,"storeStatus",Operator.IS_NOT_NULL,null);
+        entityCondition.addConditionGroup(Arrays.asList(
+                Condition.builder().field("storeStatus").logic(Logic.AND).operator(Operator.BETWEEN).value(Arrays.asList(1,2)).build(),
+                Condition.builder().field("storeStatus").logic(Logic.OR).operator(Operator.IN).value(Arrays.asList(1,2,3)).build())
+        );
+        entityCondition.addOrder(OrderBy.asc("aclStoreType"));
+        entityCondition.addOrder(OrderBy.desc("storeStatus"));
+        PageHelper.startPage(page,size).doSelectPage(()->aclStoreMapper.selectByEntityCondition(entityCondition));
+```
+**生成sql**
+```sql
+SELECT
+	ID,
+	tenant_id,
+	code,
+	NAME,
+	parent_id,
+	org_type,
+	country,
+	province,
+	city,
+	district,
+	address,
+	contact_man,
+	contact_number,
+	order_no,
+	create_user,
+	create_time,
+	update_user,
+	update_time,
+	delete_flag,
+	status,
+	brand_id,
+	acl_store_type,
+	ten_alias,
+	alip_mer_id,
+	alip_sto_id,
+	short_pinyin,
+	is_show_card,
+	store_logo,
+	referrer,
+	key_account_type,
+	consignor,
+	store_status,
+	tabl_cons,
+	tabl_cons_real,
+	rate_margin,
+	tab_num,
+	dic_profession_id,
+	latitude,
+	longitude,
+	pre_capita,
+	main_shop_name,
+	merchant_id,
+	merchant_parent_id,
+	merchant_brand_id,
+	ali_store_logo_id,
+	daya_merchant_id,
+	plus_flag,
+	plus_status
+FROM
+	xiaoya_crm.acl_store
+WHERE
+	store_status = ?
+AND store_status = ?
+OR store_status IN (?,?,?,?)
+OR store_status BETWEEN ?
+AND ?
+OR store_status IS NOT NULL
+AND (
+	store_status BETWEEN ?
+	AND ?
+	OR store_status IN (?,?,?)
+)
+ORDER BY
+	acl_store_type ASC,
+	store_status DESC
+LIMIT 2
+```

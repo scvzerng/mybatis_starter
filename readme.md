@@ -1,6 +1,7 @@
 ## mybatis starter
 
 > pagehelper前缀  具体配置PageHelperProperties
+
 ```yaml
 pagehelper: 
   dialect: "" #分页逻辑
@@ -17,6 +18,7 @@ pagehelper:
 > intelligent.datasource前缀 具体配置 DataSourceProperties
 - 多数据源
 > mybatis前缀 具体配置MybatisMapperProperties
+
 ```yaml
 mybatis:
   config: #MyBatis 的 XML 配置文件路径
@@ -27,7 +29,9 @@ mybatis:
   executorType: ExecutorType.SIMPLE # SQL执行器
   mappers: Collections.singletonList(Mapper.class) #需要注册的Mapper                                
 ```
+
 - 多数据源事物支持
+
 ```yaml
 intelligent:
   datasource:
@@ -67,7 +71,9 @@ intelligent:
 - 注解切换数据源 value写上配置时填的key即可
 
 ### EntityCondition
+
 **代码**
+
 ```java
   EntityCondition entityCondition = EntityCondition.forClass(AclStore.class);
         entityCondition.addCondition("storeStatus",2);
@@ -83,7 +89,9 @@ intelligent:
         entityCondition.addOrder(OrderBy.desc("storeStatus"));
         PageHelper.startPage(page,size).doSelectPage(()->aclStoreMapper.selectByEntityCondition(entityCondition));
 ```
+
 **生成sql**
+
 ```sql
 SELECT
 	ID,

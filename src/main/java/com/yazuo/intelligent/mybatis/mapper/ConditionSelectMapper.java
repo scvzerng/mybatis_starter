@@ -1,4 +1,4 @@
-package org.yazuo.mapper;
+package com.yazuo.intelligent.mybatis.mapper;
 
 import com.yazuo.intelligent.mybatis.mapper.condition.EntityCondition;
 import com.yazuo.intelligent.mybatis.mapper.provider.ConditionSelectProvider;

@@ -23,26 +23,26 @@ public class DataSourceConfig {
     /**
      * 初始化时建立物理连接的个数
      */
-    private Integer initialSize;
+    private Integer initialSize = 4;
     /**
      * 最小连接池数量
      */
-    private Integer minIdle;
+    private Integer minIdle = 4;
     /**
      * 已经不再使用，配置了也没效果
      */
     @Deprecated
-    private Integer maxIdle;
+    private Integer maxIdle = 0;
     /**
      * 最大连接池数量
      */
-    private Integer maxActive;
+    private Integer maxActive = 50;
     /**
      * 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，
      * 缺省启用公平锁，并发效率会有所下降，
      *如果需要可以通过配置useUnfairLock属性为true使用非公平锁
      */
-    private Integer maxWait;
+    private Integer maxWait = 10000;
     /**
      * 链接是否默认提交
      */
@@ -62,13 +62,13 @@ public class DataSourceConfig {
     /**
      * 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
      */
-    private Boolean poolPreparedStatements = false;
+    private Boolean poolPreparedStatements = true;
     /**
      * 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
      */
-    private Integer maxPoolPreparedStatementPerConnectionSize = 0 ;
-    private Boolean removeAbandoned;
-    private Integer removeAbandonedTimeout;
+    private Integer maxPoolPreparedStatementPerConnectionSize = 100 ;
+    private Boolean removeAbandoned = false;
+    private Integer removeAbandonedTimeout = 0;
     /**
      * 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
      */
@@ -78,13 +78,13 @@ public class DataSourceConfig {
      *1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。
      *2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明
      */
-    private Integer timeBetweenEvictionRunsMillis;
-    private Integer numTestsPerEvictionRun;
+    private Integer timeBetweenEvictionRunsMillis = 3000;
+    private Integer numTestsPerEvictionRun = 0;
     private String filters = "stat,wall";
     /**
      * 连接保持空闲而不被驱逐的最小时间
      */
-    private Integer minEvictableIdleTimeMillis;
+    private Integer minEvictableIdleTimeMillis = 300000;
     /**
      * 连接数据库的url
      */

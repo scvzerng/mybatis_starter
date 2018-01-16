@@ -1,5 +1,8 @@
 package com.yazuo.intelligent.mybatis;
 
+import lombok.Data;
+import org.apache.ibatis.session.Configuration;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.yazuo.mapper.ConditionRemoveMapper;
 import org.yazuo.mapper.ConditionSelectMapper;
 import org.apache.ibatis.session.ExecutorType;
@@ -19,6 +22,7 @@ import java.util.List;
  * Package:com.yazuo.intelligent.mybatis.config
  * To change this template use File | Settings | File Templates.
  */
+@Data
 @ConfigurationProperties(MybatisMapperProperties.PREFIX)
 public class MybatisMapperProperties extends Config {
     public static final String PREFIX = "mybatis";
@@ -50,60 +54,10 @@ public class MybatisMapperProperties extends Config {
      *需要注册的Mapper
      */
     private List<Class> mappers = Arrays.asList(ConditionRemoveMapper.class,Mapper.class, ConditionSelectMapper.class);
+    /**
+     * mybatis配置
+     */
+    @NestedConfigurationProperty
+    private Configuration configuration;
 
-    public String getConfig() {
-        return config;
-    }
-
-    public void setConfig(String config) {
-        this.config = config;
-    }
-
-    public Resource[] getMapperLocations() {
-        return mapperLocations;
-    }
-
-    public void setMapperLocations(Resource[] mapperLocations) {
-        this.mapperLocations = mapperLocations;
-    }
-
-    public String getTypeAliasesPackage() {
-        return typeAliasesPackage;
-    }
-
-    public void setTypeAliasesPackage(String typeAliasesPackage) {
-        this.typeAliasesPackage = typeAliasesPackage;
-    }
-
-    public String getTypeHandlersPackage() {
-        return typeHandlersPackage;
-    }
-
-    public void setTypeHandlersPackage(String typeHandlersPackage) {
-        this.typeHandlersPackage = typeHandlersPackage;
-    }
-
-    public boolean isCheckConfigLocation() {
-        return checkConfigLocation;
-    }
-
-    public void setCheckConfigLocation(boolean checkConfigLocation) {
-        this.checkConfigLocation = checkConfigLocation;
-    }
-
-    public ExecutorType getExecutorType() {
-        return executorType;
-    }
-
-    public void setExecutorType(ExecutorType executorType) {
-        this.executorType = executorType;
-    }
-
-    public List<Class> getMappers() {
-        return mappers;
-    }
-
-    public void setMappers(List<Class> mappers) {
-        this.mappers = mappers;
-    }
 }

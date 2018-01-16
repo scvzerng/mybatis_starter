@@ -27,13 +27,14 @@ import javax.sql.DataSource;
 @ConditionalOnClass({SqlSessionFactory.class, SqlSessionFactoryBean.class})
 @AutoConfigureAfter(DataSourceAutoConfiguration.class)
 @ConditionalOnBean(DataSourceAutoConfiguration.class)
-public class MybatisAutoConfiguration  {
+public class MybatisAutoConfiguration {
     @Autowired(required = false)
     private Interceptor[] interceptors = {};
     @Resource
     ApplicationContext context;
     @Resource
     MybatisMapperProperties mybatisMapperProperties;
+
     @PostConstruct
     public void checkConfigFileExists() {
         if (mybatisMapperProperties.isCheckConfigLocation()) {
@@ -51,19 +52,23 @@ public class MybatisAutoConfiguration  {
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
-        if(!StringUtils.isEmpty(mybatisMapperProperties.getConfig())){
+        if (!StringUtils.isEmpty(mybatisMapperProperties.getConfig())) {
             factory.setConfigLocation(context.getResource(mybatisMapperProperties.getConfig()));
-        }else{
-            if (this.interceptors.length > 0) {
-                factory.setPlugins(this.interceptors);
-            }
-            factory.setTypeAliasesPackage(mybatisMapperProperties.getTypeAliasesPackage());
-            factory.setTypeHandlersPackage(mybatisMapperProperties.getTypeHandlersPackage());
-            factory.setMapperLocations(mybatisMapperProperties.getMapperLocations());
         }
+        if (this.interceptors.length > 0) {
+            factory.setPlugins(this.interceptors);
+        }
+        if(mybatisMapperProperties.getConfiguration()!=null){
+            factory.setConfiguration(mybatisMapperProperties.getConfiguration());
+        }
+        factory.setTypeAliasesPackage(mybatisMapperProperties.getTypeAliasesPackage());
+        factory.setTypeHandlersPackage(mybatisMapperProperties.getTypeHandlersPackage());
+        factory.setMapperLocations(mybatisMapperProperties.getMapperLocations());
+
 
         return factory.getObject();
     }
+
     @Bean
     @ConditionalOnMissingBean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {

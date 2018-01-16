@@ -3,6 +3,7 @@ package com.yazuo.intelligent.datasource;
 import com.yazuo.intelligent.datasource.config.DataSourceConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import java.util.Map;
 

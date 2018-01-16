@@ -1,4 +1,4 @@
-package org.yazuo.mapper;
+package com.yazuo.intelligent.mybatis.mapper;
 
 import com.yazuo.intelligent.mybatis.mapper.condition.EntityCondition;
 import com.yazuo.intelligent.mybatis.mapper.provider.ConditionSelectProvider;
@@ -19,7 +19,7 @@ public interface ConditionSelectMapper<T> extends Mapper<T>,InsertListMapper<T> 
      *
      * 支持动态条件
      * 支持排序
-     * TODO 支持动态列
+     * 支持动态列
      * @param condition
      * @return
      */

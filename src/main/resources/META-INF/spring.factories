@@ -1,6 +1,6 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.yazuo.intelligent.datasource.config.DataSourceAutoConfiguration,\
-  com.yazuo.intelligent.mybatis.config.MybatisAutoConfiguration,\
-  com.yazuo.intelligent.mybatis.config.MapperAutoConfiguration,\
-  com.yazuo.intelligent.mybatis.mapper.MapperScanAutoConfiguration,\
-  com.yazuo.intelligent.mybatis.config.PageHelperAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.zero.scvzerng.datasource.config.DataSourceAutoConfiguration,\
+  com.zero.scvzerng.mybatis.config.MybatisAutoConfiguration,\
+  com.zero.scvzerng.mybatis.config.MapperAutoConfiguration,\
+  com.zero.scvzerng.mybatis.mapper.MapperScanAutoConfiguration,\
+  com.zero.scvzerng.mybatis.config.PageHelperAutoConfiguration
